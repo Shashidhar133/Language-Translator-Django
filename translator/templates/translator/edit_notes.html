@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <h3>Edit Translation Notes</h3>
+
+        <p><strong>Original:</strong> {{ translation.original_text }}</p>
+
+        <p><strong>Translation:</strong> {{ translation.translated_text }}</p>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button
+                class="btn btn-success"
+                type="submit">
+
+                Save Notes
+
+            </button>
+
+            <a
+                href="{% url 'history' %}"
+                class="btn btn-secondary">
+
+                Cancel
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

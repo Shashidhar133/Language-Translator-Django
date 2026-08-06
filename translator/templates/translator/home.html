@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <h2 class="mb-4">
+            Language Translator
+        </h2>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="mb-3">
+                {{ form.text.label_tag }}
+                {{ form.text }}
+                {{ form.text.errors }}
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    {{ form.source_language.label_tag }}
+                    {{ form.source_language }}
+                    {{ form.source_language.errors }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    {{ form.target_language.label_tag }}
+                    {{ form.target_language }}
+                    {{ form.target_language.errors }}
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn btn-primary">
+
+                Translate
+
+            </button>
+
+        </form>
+        {% if translated_text %}
+
+        <hr>
+
+        <h4 class="mt-4">
+            Translated Text
+        </h4>
+
+        <div class="alert alert-success">
+
+            {{ translated_text }}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
