@@ -12,13 +12,15 @@ LANGUAGE_CHOICES = [
 ]
 
 
-user = models.ForeignKey(
-    User,
-    on_delete=models.CASCADE,
-    related_name="translations"
-)
-
 class Translation(models.Model):
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="translations",
+        null=True,
+        blank=True
+    )
 
     original_text = models.TextField()
 
@@ -34,9 +36,7 @@ class Translation(models.Model):
         choices=LANGUAGE_CHOICES,
     )
 
-    notes = models.TextField(
-        blank=True
-    )
+    notes = models.TextField(blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
